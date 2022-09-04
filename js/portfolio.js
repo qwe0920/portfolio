@@ -8,6 +8,7 @@
 			$(this).removeClass("ho");
 		}
 	);
+	
 	//이벤트 썸네일이미지 클릭
 	$("#event> div> div").click(function(){
 		const x = $(this).children("img").attr("src");		
@@ -21,11 +22,38 @@
 		$("#popup").fadeIn();
 		$("body").css("overflow","hidden");		
 	});
+	
+	
+	
+		$("#SNS> div> div").hover(
+		function(){
+			$(this).addClass("ho");			
+		} , 
+		function(){
+			$(this).removeClass("ho");
+		}
+	);
+	
+		$("#SNS> div> div").click(function(){
+		const x = $(this).children("img").attr("src");		
+		const y = x.substr(-4);// ".jpg" 또는 ".png"...	
+		const z = x.slice(0,-4);//예_ "images/event-1"부분
+		const zz = z + "_big" + y;
+		$("#popup img").attr("src" , zz);
+		const txt = $(this).children("img").attr("alt");				
+		$("#popup img").attr("alt", txt);  //alt속성값 부여
+		$("#popup h3").text( txt ); //h3안 콘텐츠 텍스트 부여
+		$("#popup").fadeIn();
+		$("body").css("overflow","hidden");		
+	});
+	
+	
 	//팝업 큰이미지 닫기
 	$("#popup img").click(function(){
 		$("#popup").fadeOut();
 		$("body").css("overflow","auto");
 	});
+	
 	
 	//상단 메뉴 부드럽게 이동
 	$("nav a, #top a").click(function(){
